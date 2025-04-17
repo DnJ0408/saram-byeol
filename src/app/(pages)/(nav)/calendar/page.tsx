@@ -46,6 +46,7 @@ export default function Calendar() {
     <div className='flex flex-col gap-4 p-4 md:flex-row'>
       <div className='md:flex-grow'>
         <MainCalendar
+          user={user}
           setSelectPlan={(plan) => {
             setSelectPlan(plan);
             setShowUpcoming(false);
