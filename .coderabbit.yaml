@@ -1,10 +1,21 @@
+# .coderabbit.yaml
 reviews:
   auto_review: true # 자동 코드 리뷰 활성화
+  style: educational # 교육적인 리뷰 스타일
+  max_files: 15 # PR당 최대 리뷰 파일 수
+  request_changes_threshold: minor # 변경 요청 임계값
+  enable_review_guidance: true # 리뷰 가이드 활성화
+  depth: high # 상세한 분석 수준
+
+  # 분석할 파일 경로 필터
   path_filters:
+    # 파일 타입
     - '**/*.ts' # TypeScript 파일
     - '**/*.tsx' # TypeScript React 파일
     - '**/*.js' # JavaScript 파일
     - '**/*.jsx' # JavaScript React 파일
+
+    # 디렉토리 구조
     - 'src/**'
     - 'pages/**'
     - 'app/**'
@@ -15,12 +26,29 @@ reviews:
     - 'store/**'
     - 'types/**'
 
+  # 제외할 파일 경로
   path_excludes:
     - 'node_modules/**' # node_modules 제외
     - '.next/**' # Next.js 빌드 폴더 제외
     - 'public/**' # 정적 파일 제외
-  max_files: 15 # PR당 최대 리뷰 파일 수
-  style: educational # 교육적인 리뷰 스타일
+
+# 언어 및 프레임워크 설정
+language:
+  - typescript
+  - javascript
+  - css
+  - html
+
+framework:
+  - nextjs
+
+# 채팅 설정
+chat:
+  auto_reply: true # 자동 댓글 활성화
+  locale: 'ko-KR' # 한국어 설정
+  language_settings:
+    review_language: 'korean' # 리뷰 언어
+  code_generation_language: 'typescript' # 코드 생성 언어
 
 # AI 분석 설정
 analysis:
@@ -36,25 +64,6 @@ pr_labels:
   documentation: ['docs', 'documentation']
   refactor: ['refactor']
   tests: ['test', 'tests']
-
-  language:
-    - typescript
-    - javascript
-    - css
-    - html
-  framework:
-    - nextjss
-chat:
-  auto_reply: true # 자동 댓글 활성화
-
-  #언어설정
-  locale: 'ko-KR'
-  language_settings:
-    review_language: 'korean'
-  request_changes_threshold: minor
-  enable_review_guidance: true
-  depth: high
-  code_generation_language: 'typescript'
 
 # 코드 컨벤션 및 품질 규칙
 conventions:
