@@ -1,0 +1,85 @@
+reviews:
+  auto_review: true # 자동 코드 리뷰 활성화
+  path_filters:
+    - '**/*.ts' # TypeScript 파일
+    - '**/*.tsx' # TypeScript React 파일
+    - '**/*.js' # JavaScript 파일
+    - '**/*.jsx' # JavaScript React 파일
+    - 'src/**'
+    - 'pages/**'
+    - 'app/**'
+    - 'components/**'
+    - 'lib/**'
+    - 'utils/**'
+    - 'hooks/**'
+    - 'store/**'
+    - 'types/**'
+
+  path_excludes:
+    - 'node_modules/**' # node_modules 제외
+    - '.next/**' # Next.js 빌드 폴더 제외
+    - 'public/**' # 정적 파일 제외
+  max_files: 15 # PR당 최대 리뷰 파일 수
+  style: educational # 교육적인 리뷰 스타일
+
+# AI 분석 설정
+analysis:
+  performance: true # 성능 분석 활성화
+  security: true # 보안 취약점 분석 활성화
+  best_practices: true # 모범 사례 분석 활성화
+  complexity: true # 코드 복잡도 분석 활성화
+
+# PR 레이블 자동 설정
+pr_labels:
+  enhancement: ['feature', 'enhancement', 'feat']
+  bug: ['fix', 'bug']
+  documentation: ['docs', 'documentation']
+  refactor: ['refactor']
+  tests: ['test', 'tests']
+
+  language:
+    - typescript
+    - javascript
+    - css
+    - html
+  framework:
+    - nextjss
+chat:
+  auto_reply: true # 자동 댓글 활성화
+
+  #언어설정
+  locale: 'ko-KR'
+  language_settings:
+    review_language: 'korean'
+  request_changes_threshold: minor
+  enable_review_guidance: true
+  depth: high
+  code_generation_language: 'typescript'
+
+# 코드 컨벤션 및 품질 규칙
+conventions:
+  typescript:
+    # 타입스크립트 규칙
+    - rule: '변수와 함수는 camelCase를 사용해야 합니다'
+      pattern: 'const [a-z][a-zA-Z0-9]*'
+    - rule: '컴포넌트는 PascalCase로 명명해야 합니다'
+      pattern: 'function [A-Z][a-zA-Z0-9]*|const [A-Z][a-zA-Z0-9]* ='
+    - rule: '타입과 인터페이스는 PascalCase로 명명해야 합니다'
+      pattern: '(type|interface) [A-Z][a-zA-Z0-9]*'
+    - rule: 'any 타입은 사용을 피해야 합니다'
+      pattern: ': any'
+      severity: warning
+
+  state:
+    # Zustand 관련 규칙
+    - rule: "Zustand 스토어는 'use'로 시작해야 합니다"
+      pattern: 'const use[A-Z][a-zA-Z0-9]*Store ='
+    - rule: '전역 상태는 최소화하고 적절한 범위로 제한하세요'
+      description: '컴포넌트 로컬 상태는 useState, 공유 상태는 Zustand를 사용하세요'
+
+  queries:
+    # React Query 관련 규칙
+    - rule: '쿼리 키는 배열 형태로 구조화해야 합니다'
+      pattern: "useQuery\\(\\['[a-zA-Z0-9]+'.*\\]"
+    - rule: '쿼리 함수는 분리된 함수로 작성하세요'
+      description: 'API 호출 함수를 별도 파일로 분리하여 재사용성을 높이세요'
