@@ -14,7 +14,7 @@ const ColorOptions = ({ selectedColor, setSelectedColor }: Props) => {
         <Palette size={32} />
         <p className='min-w-max text-[14px]'>색상</p>
       </section>
-      <section className='flex gap-2'>
+      <section className='flex gap-2 w-full justify-evenly'>
         {colorOptions.map((color) => (
           <div
             key={color}

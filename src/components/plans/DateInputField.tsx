@@ -14,7 +14,6 @@ setDefaultOptions({ locale: ko });
 
 const DateInputField = () => {
   const { control } = useFormContext();
-
   return (
     <FormField
       control={control}
@@ -38,10 +37,10 @@ const DateInputField = () => {
                           !field.value && 'text-muted-foreground'
                         )}
                       >
-                        {field.value?.from ? (
+                        {field.value.from ? (
                           <>{format(field.value.from, 'y.LL.dd (ccc)')}</>
                         ) : (
-                          <span> 약속일을 선택하세요</span>
+                          <span className='text-muted-foreground'> 시작일(필수)</span>
                         )}
                         <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </div>
@@ -55,7 +54,7 @@ const DateInputField = () => {
                         {field.value.to ? (
                           <>{format(field.value.to, 'y.LL.dd (ccc)')}</>
                         ) : (
-                          <>{format(field.value.from, 'y.LL.dd (ccc)')}</>
+                          <span className='text-muted-foreground'> 종료일(선택사항)</span>
                         )}
                         <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                       </div>
@@ -67,10 +66,34 @@ const DateInputField = () => {
                     mode='range'
                     defaultMonth={field.value?.from}
                     selected={field.value}
-                    onSelect={field.onChange}
                     numberOfMonths={2}
                     initialFocus
+                    locale={ko}
+                    classNames={{
+                      day_selected:
+                        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-grey-0 hover:text-grey-0 active:text-grey-0',
+                    }}
+                    onSelect={(range, selected) => {
+                      if (!range) {
+                        //range에 시작일과 종료일이 모두 undefined 일때
+                        field.onChange({
+                          from: selected,
+                          to: selected,
+                        });
+                      } else if (range.from === selected && range.to === selected) {
+                        //시작일과 종료일이 모두 선택한날과 일치할 때
+                        return;
+                      }
+                      field.onChange({
+                        from: range?.from,
+                        to: range?.to,
+                      });
+                    }}
                   />
+                  <p className='flex flex-col gap-1 pl-1 pt-1 text-center text-xs text-primary-300'>
+                    시작일과 종료일이 같으면 하루만 선택됩니다.
+                    <span className='text-grey-300'>(종료일을 선택하지 않은 경우에도 하루만 선택됩니다.)</span>
+                  </p>
                 </PopoverContent>
               </Popover>
               <FormMessage className='pl-1' />

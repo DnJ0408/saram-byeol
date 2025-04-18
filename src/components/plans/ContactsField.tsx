@@ -31,7 +31,7 @@ const ContactsField = ({ userId, enabled }: Props) => {
           <FormItem className='flex items-center justify-start gap-8'>
             <FormLabel className='relative flex w-14 flex-shrink-0 flex-grow-0 flex-col items-center justify-center gap-1'>
               <User size={24} className='h-6 w-6 flex-shrink-0 flex-grow-0' />{' '}
-              <p className='text-center text-sm'>이름</p>
+              <p className='text-center text-sm'>내 사람</p>
             </FormLabel>
             <div className='flex w-full flex-col'>
               <Popover open={open} onOpenChange={setOpen}>
@@ -48,7 +48,7 @@ const ContactsField = ({ userId, enabled }: Props) => {
                     >
                       {field.value
                         ? contacts.find((person) => person.contacts_id === field.value)?.name
-                        : '이름을 검색해주세요.'}
+                        : '내 사람을 검색해주세요.'}
                       <ChevronsUpDown className='opacity-50' />
                     </Button>
                   </FormControl>

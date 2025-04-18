@@ -78,7 +78,7 @@ export default function Calendar() {
           <>
             <h2 className='mb-4 text-xl font-bold'>약속 추가</h2>
             <div className='m-5'>
-              <PlanForm initialValues={initialFormData ?? undefined} />
+              <PlanForm initialValues={initialFormData ?? undefined} handleCancel={setShowPlanForm}/>
             </div>
           </>
         ) : isEditMode && editPlan ? (

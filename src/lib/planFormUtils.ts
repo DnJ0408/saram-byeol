@@ -22,7 +22,6 @@ export const mappingFormData = (data: PlanFormType) => {
   const { title, detail, contacts, dateInput, location, priority } = data;
   const { start_date, end_date } = getStartAndEndDate(dateInput.from, dateInput.to);
   return { title, detail, contacts_id: contacts, start_date, end_date, location, priority };
-
 };
 
 //검색없이 인풋값만 있을 때 데이터 처리
@@ -38,4 +37,3 @@ export const inputToPlace = (input: string) => {
   };
   return place;
 };
-

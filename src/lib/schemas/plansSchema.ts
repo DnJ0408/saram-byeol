@@ -16,11 +16,7 @@ export const PlansSchema = z.object({
   }),
   location: PlaceSchema.optional(),
   dateInput: z.object({
-    from: z.date({
-      required_error: '지난 날짜는 약속에 추가할 수 없습니다.',
-      invalid_type_error: '지난 날짜는 약속에 추가할 수 없습니다.',
-      message: '지난 날짜는 약속에 추가할 수 없습니다.',
-    }),
+    from: z.date(),
     to: z.date().optional(),
   }),
   contacts: z.string().min(1, {
