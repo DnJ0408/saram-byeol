@@ -1,3 +1,5 @@
+'use client';
+
 import { signInWithGoogle, signInWithKakao } from '@/app/api/supabase/service';
 import Image from 'next/image';
 import React from 'react';
@@ -15,7 +17,7 @@ const SigninSocial = () => {
   const kakaoSignin = async () => {
     const error = await signInWithKakao();
 
-    if (error) toast.warning('로그인 중 오류가 발생했습니다. 새로고침 후 다시 로그인해주세요.');
+    if (error) toast.warning('카카오 로그인에 실패했습니다. 새로고침 후 다시 시도해주세요.');
   };
 
   return (

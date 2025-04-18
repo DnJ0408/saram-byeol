@@ -39,12 +39,13 @@ export const AuthStateChangeHandler = () => {
   const { data: unsubscribe } = supabase.auth.onAuthStateChange((event, session) => {
     const alreadySignIn = localStorage.getItem('alreadySignIn');
 
-    if (event === 'SIGNED_IN' && session) {
-      setUser(session.user); // 사용자 정보 저장, isSignIn 을 true로 변경
+    if ((event === 'INITIAL_SESSION' || event === 'SIGNED_IN') && session) {
+      setUser(session.user);
 
-      if (!alreadySignIn) {
+      // 토스트는 실제 로그인 액션 때만 띄우기
+      if (event === 'SIGNED_IN' && !alreadySignIn) {
         localStorage.setItem('alreadySignIn', 'true');
-        toast.success(`로그인되었습니다.'내 사람' 페이지로 이동합니다.`);
+        toast.success(`로그인되었습니다. '내 사람' 페이지로 이동합니다.`);
       }
     } else if (event === 'SIGNED_OUT') {
       localStorage.removeItem('alreadySignIn');
