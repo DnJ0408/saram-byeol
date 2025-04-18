@@ -19,8 +19,8 @@ const PeopleDetailPanel = ({ contactsId }: Props) => {
     enabled: !!userId && !!contactsId,
   });
 
-  if (isPending) return <div className='p-8 text-center'>로딩 중...</div>;
-  if (error) return <div className='p-8 text-center'>내 사람 데이터를 불러오던 중 오류가 발생했습니다</div>;
+  if (isPending) return <div className='flex h-full items-center justify-center p-8 text-xl text-gray-500'>로딩 중...</div>;
+  if (error) return <div className='flex h-full items-center justify-center p-8 text-xl text-gray-500'>내 사람 데이터를 불러오던 중 오류가 발생했습니다</div>;
 
   const { contact, plans } = data;
 

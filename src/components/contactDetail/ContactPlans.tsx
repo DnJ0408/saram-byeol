@@ -16,7 +16,7 @@ interface Props {
   plans: PlanDetailType[];
 }
 
-const ContactPlans: React.FC<Props> = ({ plans }) => {
+const ContactPlans = ({ plans }: Props) => {
   const [isAddPlanOpen, setIsAddPlanOpen] = useState(false);
   const [isEditPlanOpen, setIsEditPlanOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<PlanDetailType | null>(null);

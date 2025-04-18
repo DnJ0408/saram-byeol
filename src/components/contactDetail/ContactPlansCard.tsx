@@ -10,7 +10,7 @@ interface ContactPlansCardProps {
   color?: string;
 }
 
-const ContactPlansCard: React.FC<ContactPlansCardProps> = ({ title, startDate, onEdit, onDelete, color = '#ec4899' }) => {
+const ContactPlansCard= ({ title, startDate, onEdit, onDelete, color = '#ec4899' }: ContactPlansCardProps) => {
   const today = new Date();
   const start = new Date(startDate);
   const dDay = differenceInCalendarDays(start, today);

@@ -15,7 +15,7 @@ interface Props {
   plans: PlanDetailType[];
 }
 
-const ContactProfile: React.FC<Props> = ({ contact, plans }) => {
+const ContactProfile = ({ contact, plans }: Props) => {
   const [isEditContactOpen, setIsEditContactOpen] = useState(false); // 사이드시트 상태
 
   const { mutate: deleteContact } = useMutateDeleteContact();

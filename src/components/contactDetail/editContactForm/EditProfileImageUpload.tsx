@@ -9,7 +9,7 @@ interface EditProfileImageUploadProps {
   setValue: UseFormSetValue<ContactFormValues>;
 }
 
-const EditProfileImageUpload: React.FC<EditProfileImageUploadProps> = ({ initialImage, setValue }) => {
+const EditProfileImageUpload = ({ initialImage, setValue }: EditProfileImageUploadProps) => {
   const [previewImage, setPreviewImage] = useState<string | null>(initialImage || null);
 
   // 폼 초기 세팅

@@ -42,7 +42,7 @@ const convertToFormValues = (plan: EditPlanType): PlanFormType => ({
   colors: plan.colors ?? '',
 });
 
-const EditPlanForm: React.FC<Props> = ({ plan, onClose }) => {
+const EditPlanForm = ({ plan, onClose }: Props) => {
   const user = useAuthStore((state) => state.user);
   const [inputValue, setInputValue] = useState(plan.location?.place_name || '');
   const [selectedColor, setSelectedColor] = useState(plan.colors || '#2F80ED');

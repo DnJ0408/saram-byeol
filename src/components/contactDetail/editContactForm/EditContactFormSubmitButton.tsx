@@ -5,7 +5,7 @@ interface EditContactFormSubmitButtonProps {
   isSubmitting: boolean;
 }
 
-const EditContactFormSubmitButton: React.FC<EditContactFormSubmitButtonProps> = ({ isSubmitting }) => {
+const EditContactFormSubmitButton = ({ isSubmitting }: EditContactFormSubmitButtonProps) => {
   return (
     <div className='flex justify-end pt-10'>
       <Button type='submit' disabled={isSubmitting}>

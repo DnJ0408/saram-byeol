@@ -8,7 +8,7 @@ interface EditContactFormProps {
   onClose: () => void;
 }
 
-const EditContactForm: React.FC<EditContactFormProps> = ({ contactData, onClose }) => {
+const EditContactForm = ({ contactData, onClose }: EditContactFormProps) => {
   const { form, onSubmit, imageSource, setImageSource, relationshipType, setRelationshipType, isSubmitting } =
     useMutateEditContact(contactData, onClose);
 

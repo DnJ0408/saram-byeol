@@ -40,7 +40,7 @@ const People = () => {
         {peopleSelectedId ? (
           <PeopleDetailPanel contactsId={peopleSelectedId} />
         ) : (
-          <div className='p-8 text-center text-gray-500'>사람을 선택해주세요.</div>
+          <div className='flex h-full items-center justify-center p-8 text-xl text-gray-500'>사람을 선택해주세요.</div>
         )}
       </div>
     </div>
