@@ -43,9 +43,10 @@ export default function Calendar() {
   if (!hasMounted || !isSignIn) return null;
 
   return (
-    <div className='flex flex-col gap-4 p-4 md:flex-row'>
+    <div className='flex flex-col gap-4 md:flex-row'>
       <div className='md:flex-grow'>
         <MainCalendar
+          user={user}
           setSelectPlan={(plan) => {
             setSelectPlan(plan);
             setShowUpcoming(false);
@@ -97,7 +98,7 @@ export default function Calendar() {
           </>
         ) : selectPlan ? (
           <>
-            <h2 className='mb-4 text-xl font-bold'>약속 디테일</h2>
+            <h2 className='mb-4 text-xl font-bold'>약속 상세</h2>
             <div className='p-12'>
               <SelectPlan
                 plans={selectPlan}

@@ -11,6 +11,7 @@ import { useGetHolidays } from '@/hooks/queries/useGetHolidays';
 import { holidayStyle } from '@/lib/utils/calendarStyle';
 import CalendarPopOver from '@/components/calendar/popOver/CalendarPopOver';
 import { useGetSelectPlan } from '@/hooks/queries/useGetSelectPlan';
+import { User } from '@supabase/supabase-js';
 
 // 드래그 이벤트 타입
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 }
 
 interface MainCalendarProps {
+  user: User | null;
   setSelectPlan: React.Dispatch<React.SetStateAction<PlansType[] | null>>;
   CustomToolbarProps: {
     onShowUpcomingPlans: () => void;
@@ -35,7 +37,7 @@ const localizer = dateFnsLocalizer({
   locales: {},
 });
 
-const MainCalendar = ({ setSelectPlan, CustomToolbarProps }: MainCalendarProps) => {
+const MainCalendar = ({ setSelectPlan, CustomToolbarProps, user }: MainCalendarProps) => {
   const [moment, setMoment] = useState(new Date()); //해당 달
   const [selectedDate, setSelectedDate] = useState<Date | null>(null); //선택한 셀 날짜
   const [isPopOverOpen, setIsPopOverOpen] = useState(false); //팝오버 오픈 여부
@@ -46,7 +48,7 @@ const MainCalendar = ({ setSelectPlan, CustomToolbarProps }: MainCalendarProps) 
   const { data: selectedPlanData, refetch } = useGetSelectPlan(selectedPlanId ?? '');
   const { mutate: updateEvent } = useUpadateEventMutate();
   const { data: holidays } = useGetHolidays(String(calendarYear));
-  const { data: events, isPending, isError, error } = useGetCalendarPlans(calendarYear, moment);
+  const { data: events, isPending, isError, error } = useGetCalendarPlans(user, calendarYear, moment);
 
   // 약속 + 공휴일
   const combinedEvents: CalendarEventType[] = [
